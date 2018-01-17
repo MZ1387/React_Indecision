@@ -1,4 +1,10 @@
-var template = <p>JSX from app.js</p>;
+// var template = <p>JSX from app.js</p>;
+var template = React.createElement(
+    "p",
+    null,
+    "This is JSX"
+);
+
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
