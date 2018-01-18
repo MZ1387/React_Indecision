@@ -14,56 +14,61 @@ function onFormSubmit(event) {
   if (option) {
     app.options.push(option);
     event.target.elements.option.value = '';
+    render();
   }
 }
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options.length > 0 ? 'Here are your options' : 'No options'
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options.length
-  ),
-  React.createElement(
-    'ol',
+var render = function render() {
+  var template = React.createElement(
+    'div',
     null,
     React.createElement(
-      'li',
+      'h1',
       null,
-      'Item 1'
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      'p',
+      null,
+      app.subtitle
     ),
     React.createElement(
-      'li',
+      'p',
       null,
-      'Item 2'
-    )
-  ),
-  React.createElement(
-    'form',
-    { onSubmit: onFormSubmit },
-    React.createElement('input', { type: 'text', name: 'option' }),
+      app.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
     React.createElement(
-      'button',
+      'p',
       null,
-      'Add Option'
+      app.options.length
+    ),
+    React.createElement(
+      'ol',
+      null,
+      React.createElement(
+        'li',
+        null,
+        'Item 1'
+      ),
+      React.createElement(
+        'li',
+        null,
+        'Item 2'
+      )
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     )
-  )
-);
+  );
 
-ReactDOM.render(template, document.getElementById('app'));
+  ReactDOM.render(template, document.getElementById('app'));
+};
+
+render();
