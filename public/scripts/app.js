@@ -1,18 +1,69 @@
 'use strict';
 
-var user = { name: 'Mario', age: 30 };
-
-var add = function add(a, b) {
-  return a + b;
+var app = {
+  title: 'Indecision App',
+  subtitle: 'Put your life in the hands of a computer.',
+  options: []
 };
-console.log(add(55, 6, 32));
+
+function onFormSubmit(event) {
+  event.preventDefault();
+
+  var option = event.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    event.target.elements.option.value = '';
+  }
+}
 
 var template = React.createElement(
-  'p',
+  'div',
   null,
-  user.name + ' is ' + user.age
+  React.createElement(
+    'h1',
+    null,
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    'p',
+    null,
+    app.subtitle
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length > 0 ? 'Here are your options' : 'No options'
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length
+  ),
+  React.createElement(
+    'ol',
+    null,
+    React.createElement(
+      'li',
+      null,
+      'Item 1'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'Item 2'
+    )
+  ),
+  React.createElement(
+    'form',
+    { onSubmit: onFormSubmit },
+    React.createElement('input', { type: 'text', name: 'option' }),
+    React.createElement(
+      'button',
+      null,
+      'Add Option'
+    )
+  )
 );
-
-console.log(template);
 
 ReactDOM.render(template, document.getElementById('app'));
