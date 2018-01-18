@@ -1,10 +1,18 @@
 'use strict';
 
+var user = { name: 'Mario', age: 30 };
+
+var add = function add(a, b) {
+  return a + b;
+};
+console.log(add(55, 6, 32));
+
 var template = React.createElement(
   'p',
   null,
-  'How can I try this out?'
+  user.name + ' is ' + user.age
 );
-var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+console.log(template);
+
+ReactDOM.render(template, document.getElementById('app'));
